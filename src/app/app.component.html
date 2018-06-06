@@ -1,10 +1,10 @@
 <ng-sidebar-container>
   <!-- A sidebar -->
-  <ng-sidebar [(opened)]="opened" [closeOnClickOutside]="true">
+  <ng-sidebar [(opened)]="opened" [closeOnClickOutside]="true" [autoCollapseWidth]="575">
     <app-sidebar></app-sidebar>
   </ng-sidebar>
   <!-- Page content -->
-  <div ng-sidebar-content>
+  <div ng-sidebar-content id="pageContent">
     <app-header [toggleSidebarCallback]="theBoundToggleSidebar"></app-header>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
