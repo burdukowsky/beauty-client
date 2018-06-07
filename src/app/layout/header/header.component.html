@@ -1,18 +1,20 @@
-<nav class="navbar navbar-expand navbar-light fixed-top bg-light">
-  <a class="navbar-brand d-none d-sm-inline-block" routerLink="/">Navbar</a>
-  <button class="navbar-toggler d-block d-sm-none" type="button" (click)="toggleSidebar()">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <ul class="navbar-nav d-none d-sm-flex">
-    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-      <a class="nav-link" routerLink="/">Main</a>
-    </li>
-    <li class="nav-item" routerLinkActive="active">
-      <a class="nav-link" routerLink="/about">About</a>
-    </li>
-  </ul>
-  <div class="ml-auto">
-    <button class="btn btn-outline-secondary mr-2" type="button">Log in</button>
-    <button class="btn btn-outline-secondary" type="button">Sign up</button>
+<nav class="navbar navbar-expand navbar-light fixed-top navbar-dark bg-violet">
+  <div class="container">
+    <a class="navbar-brand d-none d-sm-inline-block" routerLink="/">Navbar</a>
+    <button class="navbar-toggler d-block d-sm-none" type="button" (click)="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav d-none d-sm-flex">
+      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+        <a class="nav-link" routerLink="/">Main</a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/about">About</a>
+      </li>
+    </ul>
+    <div class="ml-auto">
+      <button class="btn btn-outline-light mr-2" type="button">Log in</button>
+      <button class="btn btn-outline-light" type="button">Sign up</button>
+    </div>
   </div>
 </nav>

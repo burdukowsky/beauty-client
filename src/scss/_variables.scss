@@ -1,1 +1,9 @@
 $violet: #6435C9;
+$violet-darken-10: darken($violet, 10%);
+$violet-darken-20: darken($violet, 20%);
+$violet-lighten-10: lighten($violet, 10%);
+$violet-lighten-20: lighten($violet, 20%);
+$violet-lighten-30: lighten($violet, 30%);
+$violet-lighten-40: lighten($violet, 40%);
+
+$body-bg: lighten($violet, 48%);
