@@ -1,0 +1,13 @@
+@mixin background-image($value) {
+  background-image: $value;
+  -moz-background-image: $value;
+  -o-background-image: $value;
+  -webkit-background-image: $value;
+}
+
+@mixin background-size($value) {
+  background-size: $value;
+  -moz-background-size: $value;
+  -o-background-size: $value;
+  -webkit-background-size: $value;
+}
