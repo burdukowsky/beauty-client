@@ -9,6 +9,8 @@ import {SidebarComponent} from './layout/sidebar/sidebar.component';
 import {HeaderComponent} from './layout/header/header.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {AboutComponent} from './about/about.component';
+import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import {AboutComponent} from './about/about.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    FontAwesomeModule,
+    BsDropdownModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
