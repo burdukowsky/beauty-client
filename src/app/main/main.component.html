@@ -2,53 +2,64 @@
   Подобрать салон красоты в Новосибирске
 </h1>
 
-<form class="mb-4">
+<div *ngIf="loadErrorMessage" class="text-center mt-5 text-black-50">
+  <fa-icon [icon]="faFrown" class="fa-7x"></fa-icon>
+  <p>
+    Ошибка работы с сервером.
+    <br>
+    Проверьте соединение с Интернет или попробуйте позже.
+  </p>
+</div>
+
+<form *ngIf="!loadErrorMessage" class="mb-4" (ngSubmit)="onSubmit()" #searchForm="ngForm" autocomplete="off">
   <div class="row">
     <div class="col-sm-6 mb-3">
       <label>Я ищу</label>
-      <div class="custom-control custom-radio">
-        <input class="custom-control-input" type="radio" name="companyType" id="salon" value="salon">
-        <label class="custom-control-label" for="salon">
-          Салон
-        </label>
+      <div class="custom-control custom-radio" *ngFor="let key of companyTypeKeys">
+        <input class="custom-control-input" type="radio" name="companyType" [id]="key" [value]="companyTypes[key]"
+               [(ngModel)]="chosenCompanyType">
+        <label class="custom-control-label" [for]="key">{{companyTypes[key]}}</label>
       </div>
       <div class="custom-control custom-radio">
-        <input class="custom-control-input" type="radio" name="companyType" id="master" value="master">
-        <label class="custom-control-label" for="master">
-          Мастера
-        </label>
-      </div>
-      <div class="custom-control custom-radio">
-        <input class="custom-control-input" type="radio" name="companyType" id="noMatter" value="noMatter" checked>
-        <label class="custom-control-label" for="noMatter">
-          Неважно
-        </label>
+        <input class="custom-control-input" type="radio" name="companyType" id="noMatter" [value]="null"
+               [(ngModel)]="chosenCompanyType">
+        <label class="custom-control-label" for="noMatter">Неважно</label>
       </div>
     </div>
 
     <div class="col-sm-6 mb-3">
       <label>Услуги</label>
-      <div class="custom-control custom-checkbox">
-        <input class="custom-control-input" type="checkbox" name="services" id="service1">
-        <label class="custom-control-label" for="service1">
-          Маникюр
-        </label>
-      </div>
-      <div class="custom-control custom-checkbox">
-        <input class="custom-control-input" type="checkbox" name="services" id="service2">
-        <label class="custom-control-label" for="service2">
-          Педикюр
-        </label>
-      </div>
+      <ul id="categoryList" class="list-unstyled">
+      <li class="custom-control custom-checkbox" *ngFor="let category of categories; let i = index">
+        <input class="custom-control-input" type="checkbox" name="services" id="service{{i}}" value="{{category.id}}"
+               (change)="onCategoryCheck(category.id)" [checked]="categoryChosen(category.id)">
+        <label class="custom-control-label" for="service{{i}}">{{category.name}}</label>
+      </li>
+      </ul>
     </div>
   </div>
   <div class="text-center">
-    <button type="submit" class="btn btn-primary">Подобрать</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!categoriesChosen">Подобрать</button>
   </div>
 </form>
 
-<section>
-  <div class="col-md-7 col-lg-6">
+<section *ngIf="!loadErrorMessage && formSubmitted && companies.length === 0" class="text-center mt-5 text-black-50">
+  <fa-icon [icon]="faSearch" class="fa-7x"></fa-icon>
+  <p>
+    По вашему запросу ничего не найдено.
+    <br>
+    Попробуйте изменить критерии поиска.
+  </p>
+</section>
+
+<section *ngIf="!loadErrorMessage"
+         infiniteScroll
+         [infiniteScrollDistance]="2"
+         [infiniteScrollThrottle]="50"
+         [infiniteScrollContainer]="'.ng-sidebar__content'"
+         [fromRoot]="true"
+         (scrolled)="onScroll()">
+  <div class="col-md-7 col-lg-6" *ngFor="let company of companies;">
     <div class="card company-card mb-3">
       <div class="row h-100">
         <div class="col-4 pr-0">
@@ -56,8 +67,8 @@
         </div>
         <div class="col-8 pl-0">
           <div class="card-block py-2 px-3">
-            <h4 class="card-title">Название</h4>
-            <p class="card-text text-justify">Описание</p>
+            <h4 class="card-title">{{company.name}}</h4>
+            <p class="card-text text-justify">{{company.description}}</p>
           </div>
         </div>
       </div>

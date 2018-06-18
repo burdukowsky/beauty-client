@@ -1,13 +1,13 @@
 <div class="bg-violet pl-4 py-4">
-  <img id="sidebarLogo" src="assets/img/logo-symbol.png">
+  <img id="sidebarLogo" src="assets/img/logo-symbol.svg">
   <p class="text-white mt-4 mb-0">все-салоны-красоты.рф</p>
 </div>
 <div class="list-group list-group-flush">
   <a class="list-group-item list-group-item-action border-0"
      routerLink="/"
-     [routerLinkActive]="activeItemClasses"
+     routerLinkActive="sidebar-list-group-item-active"
      [routerLinkActiveOptions]="{exact:true}">Главная</a>
   <a class="list-group-item list-group-item-action border-0"
      routerLink="/about"
-     [routerLinkActive]="activeItemClasses">О сервисе</a>
+     routerLinkActive="sidebar-list-group-item-active">О сервисе</a>
 </div>

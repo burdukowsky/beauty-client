@@ -22,3 +22,13 @@ $company-card-height-xs: 100px;
     @include background-image(url("https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400"));
   }
 }
+
+ul#categoryList {
+  column-count: 3;
+  @media (max-width: 1150px) {
+    column-count: 2;
+  }
+  @media (max-width: 600px) {
+    column-count: 1;
+  }
+}

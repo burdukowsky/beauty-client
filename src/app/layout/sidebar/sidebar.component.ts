@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,9 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  public activeItemClasses = ['list-group-item-secondary', 'font-weight-bold', 'text-violet-darken-20'];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }

@@ -11,3 +11,14 @@ ng-sidebar-container {
   width: 50px;
   height: 50px;
 }
+
+$sidebar-list-group-item-active-bg-color: #d6d8db;
+.sidebar-list-group-item-active {
+  @extend .font-weight-bold;
+  @extend .text-violet-darken-20;
+  background-color: $sidebar-list-group-item-active-bg-color;
+  &:hover, &:focus {
+    @extend .text-violet-darken-20;
+    background-color: $sidebar-list-group-item-active-bg-color;
+  }
+}
