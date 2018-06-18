@@ -1,3 +1,8 @@
 .navbar-brand > img {
   max-height: 40px;
 }
+
+nav#navbar {
+  padding-left: $page-container-width-padding;
+  padding-right: $page-container-width-padding;
+}

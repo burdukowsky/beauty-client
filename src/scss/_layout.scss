@@ -3,5 +3,5 @@ body {
 }
 
 .page-container {
-  padding: 5%;
+  padding: $page-container-height-padding $page-container-width-padding;
 }

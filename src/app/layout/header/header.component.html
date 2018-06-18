@@ -1,27 +1,25 @@
-<nav class="navbar navbar-expand navbar-light fixed-top navbar-dark bg-violet">
-  <div class="container">
-    <a class="navbar-brand d-none d-sm-inline-block p-0" routerLink="/"><img src="assets/img/logo.png"></a>
-    <button class="navbar-toggler d-block d-sm-none" type="button" (click)="toggleSidebar()">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <ul class="navbar-nav d-none d-sm-flex">
-      <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-        <a class="nav-link" routerLink="/">Главная</a>
-      </li>
-      <li class="nav-item" routerLinkActive="active">
-        <a class="nav-link" routerLink="/about">О сервисе</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav ml-auto">
-      <li class="nav-item active dropdown" dropdown placement="bottom right">
-        <a dropdownToggle class="nav-link dropdown-toggle cursor-pointer" id="navbarLanguageDropdown" role="button">
-          <fa-icon [icon]="faGlobe"></fa-icon>
-        </a>
-        <div *dropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarLanguageDropdown">
-          <a class="dropdown-item cursor-pointer" role="button">Русский</a>
-          <a class="dropdown-item cursor-pointer" role="button">English</a>
-        </div>
-      </li>
-    </ul>
-  </div>
+<nav id="navbar" class="navbar navbar-expand navbar-light fixed-top navbar-dark bg-violet">
+  <a class="navbar-brand d-none d-sm-inline-block p-0" routerLink="/"><img src="assets/img/logo.png"></a>
+  <button class="navbar-toggler d-block d-sm-none" type="button" (click)="toggleSidebar()">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <ul class="navbar-nav d-none d-sm-flex">
+    <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+      <a class="nav-link" routerLink="/">Главная</a>
+    </li>
+    <li class="nav-item" routerLinkActive="active">
+      <a class="nav-link" routerLink="/about">О сервисе</a>
+    </li>
+  </ul>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item active dropdown" dropdown placement="bottom right">
+      <a dropdownToggle class="nav-link dropdown-toggle cursor-pointer" id="navbarLanguageDropdown" role="button">
+        <fa-icon [icon]="faGlobe"></fa-icon>
+      </a>
+      <div *dropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarLanguageDropdown">
+        <a class="dropdown-item cursor-pointer" role="button">Русский</a>
+        <a class="dropdown-item cursor-pointer" role="button">English</a>
+      </div>
+    </li>
+  </ul>
 </nav>
