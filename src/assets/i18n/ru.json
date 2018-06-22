@@ -1,0 +1,27 @@
+{
+  "COMMON": {
+    "MAIN": "Главная",
+    "ABOUT": "О проекте",
+    "SERVER_ERROR": "Ошибка работы с сервером",
+    "SERVER_ERROR_DESCRIPTION": "Проверьте соединение с Интернет или попробуйте позже",
+    "SERVICES": "Услуги"
+  },
+  "MAIN": {
+    "CHOOSE_SALON": "Подобрать салон красоты в Новосибирске",
+    "I_AM_LOOKING_FOR": "Я ищу",
+    "FIND": "Подобрать",
+    "NOTHING_FOUND": "По вашему запросу ничего не найдено",
+    "NOTHING_FOUND_DESCRIPTION": "Попробуйте изменить критерии поиска",
+    "COMPANY_TYPES": {
+      "SALON": "Салон",
+      "MASTER": "Мастера",
+      "NO_MATTER": "Неважно"
+    }
+  },
+  "COMPANY": {
+    "TYPES": {
+      "SALON": "Салон",
+      "MASTER": "Мастер"
+    }
+  }
+}

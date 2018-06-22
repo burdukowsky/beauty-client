@@ -1,0 +1,27 @@
+{
+  "COMMON": {
+    "MAIN": "Main",
+    "ABOUT": "About",
+    "SERVER_ERROR": "Error communicating with the server",
+    "SERVER_ERROR_DESCRIPTION": "Check your Internet connection or try again later",
+    "SERVICES": "Services"
+  },
+  "MAIN": {
+    "CHOOSE_SALON": "Choose a beauty salon in Novosibirsk",
+    "I_AM_LOOKING_FOR": "I'm looking for",
+    "FIND": "Find",
+    "NOTHING_FOUND": "Nothing found on your request",
+    "NOTHING_FOUND_DESCRIPTION": "Try changing search criteria",
+    "COMPANY_TYPES": {
+      "SALON": "Salon",
+      "MASTER": "Master",
+      "NO_MATTER": "No matter"
+    }
+  },
+  "COMPANY": {
+    "TYPES": {
+      "SALON": "Salon",
+      "MASTER": "Master"
+    }
+  }
+}

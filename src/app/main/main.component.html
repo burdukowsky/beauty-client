@@ -1,54 +1,52 @@
-<h1 class="font-weight-light mb-4">
-  Подобрать салон красоты в Новосибирске
-</h1>
+<h1 class="font-weight-light mb-4">{{"MAIN.CHOOSE_SALON" | translate}}</h1>
 
 <div *ngIf="loadErrorMessage" class="text-center mt-5 text-black-50">
   <fa-icon [icon]="faFrown" class="fa-7x"></fa-icon>
   <p>
-    Ошибка работы с сервером.
+    {{"COMMON.SERVER_ERROR" | translate}}
     <br>
-    Проверьте соединение с Интернет или попробуйте позже.
+    {{"COMMON.SERVER_ERROR_DESCRIPTION" | translate}}
   </p>
 </div>
 
 <form *ngIf="!loadErrorMessage" class="mb-4" (ngSubmit)="onSubmit()" #searchForm="ngForm" autocomplete="off">
   <div class="row">
     <div class="col-sm-6 mb-3">
-      <label>Я ищу</label>
+      <label>{{"MAIN.I_AM_LOOKING_FOR" | translate}}</label>
       <div class="custom-control custom-radio" *ngFor="let key of companyTypeKeys">
         <input class="custom-control-input" type="radio" name="companyType" [id]="key" [value]="companyTypes[key]"
                [(ngModel)]="chosenCompanyType">
-        <label class="custom-control-label" [for]="key">{{companyTypes[key]}}</label>
+        <label class="custom-control-label" [for]="key">{{"MAIN.COMPANY_TYPES." + companyTypes[key] | translate}}</label>
       </div>
       <div class="custom-control custom-radio">
         <input class="custom-control-input" type="radio" name="companyType" id="noMatter" [value]="null"
                [(ngModel)]="chosenCompanyType">
-        <label class="custom-control-label" for="noMatter">Неважно</label>
+        <label class="custom-control-label" for="noMatter">{{"MAIN.COMPANY_TYPES.NO_MATTER" | translate}}</label>
       </div>
     </div>
 
     <div class="col-sm-6 mb-3">
-      <label>Услуги</label>
+      <label>{{"COMMON.SERVICES" | translate}}</label>
       <ul id="categoryList" class="list-unstyled">
-      <li class="custom-control custom-checkbox" *ngFor="let category of categories; let i = index">
-        <input class="custom-control-input" type="checkbox" name="services" id="service{{i}}" value="{{category.id}}"
-               (change)="onCategoryCheck(category.id)" [checked]="categoryChosen(category.id)">
-        <label class="custom-control-label" for="service{{i}}">{{category.name}}</label>
-      </li>
+        <li class="custom-control custom-checkbox" *ngFor="let category of categories; let i = index">
+          <input class="custom-control-input" type="checkbox" name="services" id="service{{i}}" value="{{category.id}}"
+                 (change)="onCategoryCheck(category.id)" [checked]="categoryChosen(category.id)">
+          <label class="custom-control-label" for="service{{i}}">{{category.name}}</label>
+        </li>
       </ul>
     </div>
   </div>
   <div class="text-center">
-    <button type="submit" class="btn btn-primary" [disabled]="!categoriesChosen">Подобрать</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!categoriesChosen">{{"MAIN.FIND" | translate}}</button>
   </div>
 </form>
 
 <section *ngIf="!loadErrorMessage && formSubmitted && companies.length === 0" class="text-center mt-5 text-black-50">
   <fa-icon [icon]="faSearch" class="fa-7x"></fa-icon>
   <p>
-    По вашему запросу ничего не найдено.
+    {{"MAIN.NOTHING_FOUND" | translate}}
     <br>
-    Попробуйте изменить критерии поиска.
+    {{"MAIN.NOTHING_FOUND_DESCRIPTION" | translate}}
   </p>
 </section>
 
