@@ -43,7 +43,7 @@
         </li>
       </ul>
       <ul class="list-unstyled list-multi-column" *ngIf="advancedSearch">
-        <li class="custom-control custom-checkbox" *ngFor="let category of categories;">
+        <li *ngFor="let category of categories;">
           <fieldset>
             <legend>{{category.name}}</legend>
             <div class="custom-control custom-checkbox" *ngFor="let service of category.services">
