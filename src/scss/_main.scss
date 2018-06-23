@@ -13,7 +13,6 @@ $company-card-height-xs: 100px;
     @include background-size(cover);
     background-repeat: no-repeat;
     background-position: center center;
-    @include background-image(url("https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400"));
   }
   rating {
     font-size: 2rem;
