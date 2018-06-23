@@ -35,11 +35,11 @@
         <label class="custom-control-label" for="advancedSearch">{{"COMMON.ADVANCED_SEARCH" | translate}}</label>
       </div>
       <ul class="list-unstyled list-multi-column" *ngIf="!advancedSearch">
-        <li class="custom-control custom-checkbox" *ngFor="let category of categories; let i = index">
-          <input class="custom-control-input" type="checkbox" name="categories" id="category{{i}}"
+        <li class="custom-control custom-checkbox" *ngFor="let category of categories">
+          <input class="custom-control-input" type="checkbox" name="categories" id="category{{category.id}}"
                  value="{{category.id}}"
                  (change)="onCategoryCheck(category.id)" [checked]="categoryChosen(category.id)">
-          <label class="custom-control-label" for="category{{i}}">{{category.name}}</label>
+          <label class="custom-control-label" for="category{{category.id}}">{{category.name}}</label>
         </li>
       </ul>
       <ul class="list-unstyled list-multi-column" *ngIf="advancedSearch">
