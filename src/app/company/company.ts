@@ -5,6 +5,11 @@ export interface Company {
   id: number;
   name: string;
   description: string;
+  timetable: string;
+  site: string;
+  phone: string;
+  address: string;
+  rating: number;
   companyType: CompanyType;
   services: Array<Service>;
 }

@@ -67,8 +67,9 @@
         </div>
         <div class="col-8 pl-0">
           <div class="card-block py-2 px-3">
-            <h4 class="card-title">{{company.name}}</h4>
-            <p class="card-text text-justify">{{company.description}}</p>
+            <h4 class="card-title text-truncate mb-0 mb-sm-2">{{company.name}}</h4>
+            <p class="card-text text-justify text-truncate mb-0 mb-sm-1">{{company.address}}</p>
+            <rating [(ngModel)]="company.rating" [max]="5" [readonly]="true"></rating>
           </div>
         </div>
       </div>

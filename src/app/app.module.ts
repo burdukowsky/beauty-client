@@ -7,6 +7,7 @@ import {AppComponent} from './app.component';
 import {SidebarModule} from 'ng-sidebar';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
+import {RatingModule} from 'ngx-bootstrap/rating';
 import {NgHttpLoaderModule} from 'ng-http-loader';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -37,6 +38,7 @@ export function createTranslateLoader(http: HttpClient) {
     SidebarModule.forRoot(),
     FontAwesomeModule,
     BsDropdownModule.forRoot(),
+    RatingModule.forRoot(),
     FormsModule,
     HttpClientModule,
     NgHttpLoaderModule,
