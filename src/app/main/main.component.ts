@@ -28,7 +28,7 @@ export class MainComponent implements OnInit {
   public companies: Array<Company> = defaultCompanies;
   public categories: Array<Category>;
   public currentPage = defaultCurrentPage;
-  public limit = 10;
+  public limit = 50;
   public formSubmitted = defaultFormSubmitted;
   private listenScrollEvents = false;
 
