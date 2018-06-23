@@ -72,8 +72,8 @@ export class MainComponent implements OnInit {
     this.companyService.getCompaniesByCategoryIds(
       this.currentPage,
       this.limit,
-      CompanySortField.Name,
-      SortDirection.Asc,
+      CompanySortField.Rating,
+      SortDirection.Desc,
       this.chosenCompanyType,
       this.chosenCategoryIds).subscribe(companies => {
       this.formSubmitted = true;
