@@ -16,7 +16,9 @@
       <div class="custom-control custom-radio" *ngFor="let key of companyTypeKeys">
         <input class="custom-control-input" type="radio" name="companyType" [id]="key" [value]="companyTypes[key]"
                [(ngModel)]="chosenCompanyType">
-        <label class="custom-control-label" [for]="key">{{"MAIN.COMPANY_TYPES." + companyTypes[key] | translate}}</label>
+        <label class="custom-control-label" [for]="key">
+          {{"MAIN.COMPANY_TYPES." + companyTypes[key] | translate}}
+        </label>
       </div>
       <div class="custom-control custom-radio">
         <input class="custom-control-input" type="radio" name="companyType" id="noMatter" [value]="null"
