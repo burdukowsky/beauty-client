@@ -5,10 +5,8 @@ import {map} from 'rxjs/operators';
 
 import {environment} from '../../environments/environment';
 import {Company} from './company';
-import {CompanyType} from './company-type.enum';
-import {CompanySortField} from './company-sort-field.enum';
-import {SortDirection} from './sort-direction.enum';
 import {Category} from './category';
+import {CompaniesSearchParams} from './companies-search-params';
 
 @Injectable({
   providedIn: 'root'
@@ -18,37 +16,27 @@ export class CompanyService {
   constructor(private http: HttpClient) {
   }
 
-  public getCompaniesByCategoryIds(page: number,
-                                   limit: number,
-                                   companySortField: CompanySortField,
-                                   sortDirection: SortDirection,
-                                   companyType: CompanyType,
-                                   ids: Array<number>): Observable<Array<Company>> {
+  public getCompaniesByCategoryIds(searchParams: CompaniesSearchParams): Observable<Array<Company>> {
     const params = new HttpParams()
-      .append('page', page == null ? '' : page.toString())
-      .append('limit', limit == null ? '' : limit.toString())
-      .append('sort', companySortField == null ? '' : companySortField)
-      .append('sortDirection', sortDirection == null ? '' : sortDirection)
-      .append('type', companyType == null ? '' : companyType)
-      .append('ids', ids == null ? '' : ids.join());
+      .append('page', searchParams.page == null ? '' : searchParams.page.toString())
+      .append('limit', searchParams.limit == null ? '' : searchParams.limit.toString())
+      .append('sort', searchParams.companySortField == null ? '' : searchParams.companySortField)
+      .append('sortDirection', searchParams.sortDirection == null ? '' : searchParams.sortDirection)
+      .append('type', searchParams.companyType == null ? '' : searchParams.companyType)
+      .append('ids', searchParams.ids == null ? '' : searchParams.ids.join());
 
     return this.http.get<any>(`${environment.apiEndpoint}/public/companies-by-category-ids`, {params: params})
       .pipe(map(response => response.data));
   }
 
-  public getCompaniesByServiceIds(page: number,
-                                  limit: number,
-                                  companySortField: CompanySortField,
-                                  sortDirection: SortDirection,
-                                  companyType: CompanyType,
-                                  ids: Array<number>): Observable<Array<Company>> {
+  public getCompaniesByServiceIds(searchParams: CompaniesSearchParams): Observable<Array<Company>> {
     const params = new HttpParams()
-      .append('page', page == null ? '' : page.toString())
-      .append('limit', limit == null ? '' : limit.toString())
-      .append('sort', companySortField == null ? '' : companySortField)
-      .append('sortDirection', sortDirection == null ? '' : sortDirection)
-      .append('type', companyType == null ? '' : companyType)
-      .append('ids', ids == null ? '' : ids.join());
+      .append('page', searchParams.page == null ? '' : searchParams.page.toString())
+      .append('limit', searchParams.limit == null ? '' : searchParams.limit.toString())
+      .append('sort', searchParams.companySortField == null ? '' : searchParams.companySortField)
+      .append('sortDirection', searchParams.sortDirection == null ? '' : searchParams.sortDirection)
+      .append('type', searchParams.companyType == null ? '' : searchParams.companyType)
+      .append('ids', searchParams.ids == null ? '' : searchParams.ids.join());
 
     return this.http.get<any>(`${environment.apiEndpoint}/public/companies-by-service-ids`, {params: params})
       .pipe(map(response => response.data));

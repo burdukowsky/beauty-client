@@ -7,6 +7,7 @@ import {Category} from '../company/category';
 import {CompanyType} from '../company/company-type.enum';
 import {CompanySortField} from '../company/company-sort-field.enum';
 import {SortDirection} from '../company/sort-direction.enum';
+import {CompaniesSearchParams} from '../company/companies-search-params';
 
 const defaultCurrentPage = 0;
 const defaultCompanies: Array<Company> = [];
@@ -30,6 +31,9 @@ export class MainComponent implements OnInit {
   public currentPage = defaultCurrentPage;
   public limit = 50;
   public formSubmitted = defaultFormSubmitted;
+  public advancedSearch = false;
+  public servicesLoaded = false;
+  public chosenServiceIds: Array<number> = [];
   private listenScrollEvents = false;
 
   constructor(private companyService: CompanyService) {
@@ -68,14 +72,18 @@ export class MainComponent implements OnInit {
     this.getCompanies();
   }
 
-  public getCompanies(): void {
-    this.companyService.getCompaniesByCategoryIds(
-      this.currentPage,
-      this.limit,
-      CompanySortField.Rating,
-      SortDirection.Desc,
-      this.chosenCompanyType,
-      this.chosenCategoryIds).subscribe(companies => {
+  private getCompanies(): void {
+    const searchParams: CompaniesSearchParams = {
+      page: this.currentPage,
+      limit: this.limit,
+      companySortField: CompanySortField.Rating,
+      sortDirection: SortDirection.Desc,
+      companyType: this.chosenCompanyType,
+      ids: this.advancedSearch ? this.chosenServiceIds : this.chosenCategoryIds
+    };
+    (this.advancedSearch ?
+      this.companyService.getCompaniesByServiceIds(searchParams) :
+      this.companyService.getCompaniesByCategoryIds(searchParams)).subscribe(companies => {
       this.formSubmitted = true;
       this.companies = this.companies.concat(companies);
       this.listenScrollEvents = companies.length >= this.limit;
@@ -92,7 +100,40 @@ export class MainComponent implements OnInit {
     }
   }
 
-  get categoriesChosen(): boolean {
+  public toggleAdvancedSearch(): void {
+    this.advancedSearch = !this.advancedSearch;
+    if (!this.servicesLoaded) {
+      this.getCategoriesWithServices();
+    }
+  }
+
+  private getCategoriesWithServices(): void {
+    this.companyService.getCategoriesWithServices().subscribe(categoriesWithServices => {
+      this.servicesLoaded = true;
+      this.categories = categoriesWithServices;
+    }, error => {
+      console.error(error);
+      this.loadErrorMessage = true;
+    });
+  }
+
+  public onServiceCheck(serviceId: number): void {
+    const index = this.chosenServiceIds.indexOf(serviceId);
+    if (index === -1) {
+      this.chosenServiceIds.push(serviceId);
+    } else {
+      this.chosenServiceIds.splice(index, 1);
+    }
+  }
+
+  public serviceChosen(serviceId: number): boolean {
+    return this.chosenServiceIds.indexOf(serviceId) !== -1;
+  }
+
+  get searchReady(): boolean {
+    if (this.advancedSearch) {
+      return this.chosenServiceIds.length > 0;
+    }
     return this.chosenCategoryIds.length > 0;
   }
 

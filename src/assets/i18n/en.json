@@ -2,6 +2,7 @@
   "COMMON": {
     "MAIN": "Main",
     "ABOUT": "About",
+    "ADVANCED_SEARCH": "Advanced search",
     "SERVER_ERROR": "Error communicating with the server",
     "SERVER_ERROR_DESCRIPTION": "Check your Internet connection or try again later",
     "SERVICES": "Services"

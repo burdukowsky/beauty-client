@@ -11,7 +11,7 @@
 
 <form *ngIf="!loadErrorMessage" class="mb-4" (ngSubmit)="onSubmit()" #searchForm="ngForm" autocomplete="off">
   <div class="row">
-    <div class="col-sm-6 mb-3">
+    <div class="col-sm-3 col-md-2 mb-3">
       <label>{{"MAIN.I_AM_LOOKING_FOR" | translate}}</label>
       <div class="custom-control custom-radio" *ngFor="let key of companyTypeKeys">
         <input class="custom-control-input" type="radio" name="companyType" [id]="key" [value]="companyTypes[key]"
@@ -27,19 +27,37 @@
       </div>
     </div>
 
-    <div class="col-sm-6 mb-3">
+    <div class="col-sm-9 col-md-10 mb-3">
       <label>{{"COMMON.SERVICES" | translate}}</label>
-      <ul id="categoryList" class="list-unstyled">
+      <div class="custom-control custom-checkbox d-inline-block float-right">
+        <input type="checkbox" class="custom-control-input" id="advancedSearch" [checked]="advancedSearch"
+               (change)="toggleAdvancedSearch()">
+        <label class="custom-control-label" for="advancedSearch">{{"COMMON.ADVANCED_SEARCH" | translate}}</label>
+      </div>
+      <ul class="list-unstyled list-multi-column" *ngIf="!advancedSearch">
         <li class="custom-control custom-checkbox" *ngFor="let category of categories; let i = index">
-          <input class="custom-control-input" type="checkbox" name="services" id="service{{i}}" value="{{category.id}}"
+          <input class="custom-control-input" type="checkbox" name="categories" id="category{{i}}"
+                 value="{{category.id}}"
                  (change)="onCategoryCheck(category.id)" [checked]="categoryChosen(category.id)">
-          <label class="custom-control-label" for="service{{i}}">{{category.name}}</label>
+          <label class="custom-control-label" for="category{{i}}">{{category.name}}</label>
+        </li>
+      </ul>
+      <ul class="list-unstyled list-multi-column" *ngIf="advancedSearch">
+        <li class="custom-control custom-checkbox" *ngFor="let category of categories;">
+          <fieldset>
+            <legend>{{category.name}}</legend>
+            <div class="custom-control custom-checkbox" *ngFor="let service of category.services">
+              <input class="custom-control-input" type="checkbox" name="services" id="service{{service.id}}"
+                     (change)="onServiceCheck(service.id)" [checked]="serviceChosen(service.id)">
+              <label class="custom-control-label" for="service{{service.id}}">{{service.name}}</label>
+            </div>
+          </fieldset>
         </li>
       </ul>
     </div>
   </div>
   <div class="text-center">
-    <button type="submit" class="btn btn-primary" [disabled]="!categoriesChosen">{{"MAIN.FIND" | translate}}</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!searchReady">{{"MAIN.FIND" | translate}}</button>
   </div>
 </form>
 
@@ -54,8 +72,7 @@
 
 <section *ngIf="!loadErrorMessage"
          infiniteScroll
-         [infiniteScrollDistance]="2"
-         [infiniteScrollThrottle]="50"
+         [infiniteScrollDistance]="1"
          [infiniteScrollContainer]="'.ng-sidebar__content'"
          [fromRoot]="true"
          (scrolled)="onScroll()">

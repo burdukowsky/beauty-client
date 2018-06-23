@@ -2,6 +2,7 @@
   "COMMON": {
     "MAIN": "Главная",
     "ABOUT": "О проекте",
+    "ADVANCED_SEARCH": "Расширенный поиск",
     "SERVER_ERROR": "Ошибка работы с сервером",
     "SERVER_ERROR_DESCRIPTION": "Проверьте соединение с Интернет или попробуйте позже",
     "SERVICES": "Услуги"
