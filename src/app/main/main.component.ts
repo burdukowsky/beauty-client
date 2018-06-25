@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {faFrown, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {cloneDeep} from 'lodash';
 
@@ -9,6 +10,7 @@ import {CompanyType} from '../company/company-type.enum';
 import {CompanySortField} from '../company/company-sort-field.enum';
 import {SortDirection} from '../company/sort-direction.enum';
 import {CompaniesSearchParams} from '../company/companies-search-params';
+import {CompanyComponent} from '../company/company.component';
 
 const defaultCurrentPage = 0;
 const defaultCompanies: Array<Company> = [];
@@ -42,8 +44,9 @@ export class MainComponent implements OnInit {
   private submittedAdvancedSearch = defaultAdvancedSearch;
   private submittedCompanyType: CompanyType = defaultCompanyType;
   private submittedChosenIds: Array<number> = cloneDeep(defaultChosenIds);
+  private bsModalRef: BsModalRef;
 
-  constructor(private companyService: CompanyService) {
+  constructor(private companyService: CompanyService, private modalService: BsModalService) {
   }
 
   ngOnInit() {
@@ -138,6 +141,13 @@ export class MainComponent implements OnInit {
 
   public serviceChosen(serviceId: number): boolean {
     return this.chosenServiceIds.indexOf(serviceId) !== -1;
+  }
+
+  public openModalCompany(company: Company): void {
+    const initialState = {
+      company: company
+    };
+    this.bsModalRef = this.modalService.show(CompanyComponent, {initialState: initialState, class: 'modal-full modal-flat'});
   }
 
   get searchReady(): boolean {

@@ -17,3 +17,28 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
+.pointer-events-none {
+  pointer-events: none;
+}
+
+.modal-full {
+  min-width: 100%;
+  margin: 0;
+  .modal-content {
+    min-height: 100vh;
+  }
+}
+
+.modal-flat {
+  .modal-content {
+    @extend .rounded-0;
+    .modal-header {
+      @extend .rounded-0;
+    }
+  }
+}
+
+.flex-child-with-text-truncate-child {
+  min-width: 0;
+}

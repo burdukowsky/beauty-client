@@ -20,6 +20,7 @@
     }
   },
   "COMPANY": {
+    "NOT_RATED": "Not rated",
     "TYPES": {
       "SALON": "Salon",
       "MASTER": "Master"

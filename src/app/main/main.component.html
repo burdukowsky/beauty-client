@@ -76,11 +76,11 @@
          [infiniteScrollContainer]="'.ng-sidebar__content'"
          [fromRoot]="true"
          (scrolled)="onScroll()">
-  <div class="col-md-7 col-lg-6" *ngFor="let company of companies;">
-    <div class="card company-card mb-3">
+  <div class="col-md-8 col-lg-7" *ngFor="let company of companies;">
+    <div class="card shadow-sm company-card border-0 mb-3 cursor-pointer" (click)="openModalCompany(company)">
       <div class="row h-100">
         <div class="col-4 pr-0">
-          <div class="company-card-image"
+          <div class="company-card-image rounded-left"
                style="background-image: url('https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400');
                       -moz-background-image: url('https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400');
                       -o-background-image: url('https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400');
@@ -90,7 +90,9 @@
           <div class="card-block py-2 px-3">
             <h4 class="card-title text-truncate mb-0 mb-sm-2">{{company.name}}</h4>
             <p class="card-text text-justify text-truncate mb-0 mb-sm-1">{{company.address}}</p>
-            <rating [(ngModel)]="company.rating" [max]="5" [readonly]="true"></rating>
+            <rating *ngIf="company.rating !== null" [(ngModel)]="company.rating" [max]="5" [readonly]="true"
+                    class="pointer-events-none"></rating>
+            <p *ngIf="company.rating === null" class="text-muted mb-0 mt-2">{{"COMPANY.NOT_RATED" | translate}}</p>
           </div>
         </div>
       </div>

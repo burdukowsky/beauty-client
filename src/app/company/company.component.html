@@ -1,0 +1,50 @@
+<div class="modal-header bg-primary text-white d-flex align-items-center">
+  <div class="flex-child-with-text-truncate-child">
+    <h4 class="modal-title text-truncate">{{company.name}}</h4>
+    <rating *ngIf="company.rating !== null" [(ngModel)]="company.rating" [max]="5" [readonly]="true"
+            class="pointer-events-none"></rating>
+    <p *ngIf="company.rating === null" class="mb-0">{{"COMPANY.NOT_RATED" | translate}}</p>
+  </div>
+  <button type="button" class="close" aria-label="Close" (click)="bsModalRef.hide()">
+    <fa-icon [icon]="faTimes" class="text-white fa-2x"></fa-icon>
+  </button>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 col-xl-9">
+      <p class="text-justify">{{company.description}}</p>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 col-xl-3">
+      <p *ngIf="company.timetable">
+        <fa-layers class="fa-fw">
+          <fa-icon [icon]="faClock"></fa-icon>
+        </fa-layers>
+        <span class="ml-2">{{company.timetable}}</span>
+      </p>
+      <p *ngIf="company.phone">
+        <fa-layers class="fa-fw">
+          <fa-icon [icon]="faPhone"></fa-icon>
+        </fa-layers>
+        <a href="tel:{{company.phone}}" class="ml-2">{{company.phone}}</a>
+      </p>
+      <p *ngIf="company.address">
+        <fa-layers class="fa-fw">
+          <fa-icon [icon]="faMapMarkerAlt"></fa-icon>
+        </fa-layers>
+        <span class="ml-2">{{company.address}}</span>
+      </p>
+      <p *ngIf="company.site">
+        <fa-layers class="fa-fw">
+          <fa-icon [icon]="faGlobe"></fa-icon>
+        </fa-layers>
+        <a href="{{company.site}}" target="_blank" class="ml-2">{{company.site}}</a>
+      </p>
+      <p>
+        <fa-layers class="fa-fw">
+          <fa-icon [icon]="faUserCircle"></fa-icon>
+        </fa-layers>
+        <span class="ml-2">{{"COMPANY.TYPES." + company.companyType | translate}}</span>
+      </p>
+    </div>
+  </div>
+</div>

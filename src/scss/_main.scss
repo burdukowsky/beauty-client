@@ -30,6 +30,9 @@ $company-card-height-xs: 100px;
       font-size: 100%;
     }
   }
+  &:hover {
+    @extend .shadow;
+  }
 }
 
 ul.list-multi-column {

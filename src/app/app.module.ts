@@ -8,6 +8,7 @@ import {SidebarModule} from 'ng-sidebar';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {BsDropdownModule} from 'ngx-bootstrap/dropdown';
 import {RatingModule} from 'ngx-bootstrap/rating';
+import {ModalModule} from 'ngx-bootstrap';
 import {NgHttpLoaderModule} from 'ng-http-loader';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
@@ -18,6 +19,7 @@ import {SidebarComponent} from './layout/sidebar/sidebar.component';
 import {HeaderComponent} from './layout/header/header.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {AboutComponent} from './about/about.component';
+import {CompanyComponent} from './company/company.component';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -30,7 +32,8 @@ export function createTranslateLoader(http: HttpClient) {
     SidebarComponent,
     HeaderComponent,
     FooterComponent,
-    AboutComponent
+    AboutComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +42,7 @@ export function createTranslateLoader(http: HttpClient) {
     FontAwesomeModule,
     BsDropdownModule.forRoot(),
     RatingModule.forRoot(),
+    ModalModule.forRoot(),
     FormsModule,
     HttpClientModule,
     NgHttpLoaderModule,
@@ -52,7 +56,8 @@ export function createTranslateLoader(http: HttpClient) {
     })
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [CompanyComponent]
 })
 export class AppModule {
 }
