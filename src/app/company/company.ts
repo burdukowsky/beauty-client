@@ -10,6 +10,7 @@ export interface Company {
   phone: string;
   address: string;
   rating: number;
+  image: string;
   companyType: CompanyType;
   services: Array<Service>;
 }

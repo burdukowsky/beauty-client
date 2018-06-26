@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {DomSanitizer, SafeStyle} from '@angular/platform-browser';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {faFrown, faSearch} from '@fortawesome/free-solid-svg-icons';
 import {cloneDeep} from 'lodash';
@@ -11,6 +12,7 @@ import {CompanySortField} from '../company/company-sort-field.enum';
 import {SortDirection} from '../company/sort-direction.enum';
 import {CompaniesSearchParams} from '../company/companies-search-params';
 import {CompanyComponent} from '../company/company.component';
+import {globals} from '../globals';
 
 const defaultCurrentPage = 0;
 const defaultCompanies: Array<Company> = [];
@@ -46,7 +48,7 @@ export class MainComponent implements OnInit {
   private submittedChosenIds: Array<number> = cloneDeep(defaultChosenIds);
   private bsModalRef: BsModalRef;
 
-  constructor(private companyService: CompanyService, private modalService: BsModalService) {
+  constructor(private companyService: CompanyService, private modalService: BsModalService, private domSanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
@@ -148,6 +150,10 @@ export class MainComponent implements OnInit {
       company: company
     };
     this.bsModalRef = this.modalService.show(CompanyComponent, {initialState: initialState, class: 'modal-full modal-flat'});
+  }
+
+  public getSafeStyleBackgroundImage(image: string): SafeStyle {
+    return this.domSanitizer.bypassSecurityTrustStyle(`url('${globals.imagePrefix}${image}')`);
   }
 
   get searchReady(): boolean {

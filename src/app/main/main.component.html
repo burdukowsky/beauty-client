@@ -81,10 +81,7 @@
       <div class="row h-100">
         <div class="col-4 pr-0">
           <div class="company-card-image rounded-left"
-               style="background-image: url('https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400');
-                      -moz-background-image: url('https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400');
-                      -o-background-image: url('https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400');
-                      -webkit-background-image: url('https://placeholdit.imgix.net/~text?txtsize=38&txt=400%C3%97400&w=400&h=400')"></div>
+               [style.background-image]="getSafeStyleBackgroundImage(company.image)"></div>
         </div>
         <div class="col-8 pl-0">
           <div class="card-block py-2 px-3">
