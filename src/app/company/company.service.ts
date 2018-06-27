@@ -7,6 +7,7 @@ import {environment} from '../../environments/environment';
 import {Company} from './company';
 import {Category} from './category';
 import {CompaniesSearchParams} from './companies-search-params';
+import {Service} from './service';
 
 @Injectable({
   providedIn: 'root'
@@ -53,5 +54,10 @@ export class CompanyService {
 
   public getCategoriesWithServices(): Observable<Array<Category>> {
     return this.http.get<Array<Category>>(`${environment.apiEndpoint}/categories-with-services`);
+  }
+
+  public getServicesByCompanyId(companyId: number): Observable<Array<Service>> {
+    return this.http.get<any>(`${environment.apiEndpoint}/companies/${companyId}/services`)
+      .pipe(map(response => response._embedded.services));
   }
 }

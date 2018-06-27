@@ -21,6 +21,8 @@
   },
   "COMPANY": {
     "NOT_RATED": "Not rated",
+    "SHOW_SERVICES": "Show services",
+    "HIDE_SERVICES": "Hide services",
     "TYPES": {
       "SALON": "Salon",
       "MASTER": "Master"

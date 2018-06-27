@@ -4,6 +4,7 @@ import {faTimes, faClock, faPhone, faMapMarkerAlt, faGlobe, faUserCircle} from '
 
 import {Company} from './company';
 import {globals} from '../globals';
+import {CompanyService} from './company.service';
 
 @Component({
   selector: 'app-company',
@@ -19,11 +20,34 @@ export class CompanyComponent implements OnInit {
   public faUserCircle = faUserCircle;
   public company: Company = null;
   public imagePrefix = globals.imagePrefix;
+  public isServicesCollapsed = true;
+  public loadServicesError = false;
 
-  constructor(public bsModalRef: BsModalRef) {
+  constructor(public bsModalRef: BsModalRef, private companyService: CompanyService) {
   }
 
   ngOnInit() {
+    this.isServicesCollapsed = true;
+    this.loadServicesError = false;
+  }
+
+  public onServicesCollapseButtonClick() {
+    if (this.isServicesCollapsed && this.company.services == null) {
+      this.getServices();
+    } else {
+      this.isServicesCollapsed = !this.isServicesCollapsed;
+    }
+  }
+
+  private getServices(): void {
+    this.loadServicesError = false;
+    this.companyService.getServicesByCompanyId(this.company.id).subscribe(services => {
+      this.company.services = services;
+      this.isServicesCollapsed = false;
+    }, error => {
+      console.error(error);
+      this.loadServicesError = true;
+    });
   }
 
 }

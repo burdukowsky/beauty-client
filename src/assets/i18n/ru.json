@@ -21,6 +21,8 @@
   },
   "COMPANY": {
     "NOT_RATED": "Рейтинга нет",
+    "SHOW_SERVICES": "Показать услуги",
+    "HIDE_SERVICES": "Скрыть услуги",
     "TYPES": {
       "SALON": "Салон",
       "MASTER": "Мастер"

@@ -13,6 +13,16 @@
   <div class="row">
     <div class="col-xs-12 col-sm-6 col-md-7 col-lg-8 order-2 order-sm-1">
       <p class="text-justify">{{company.description}}</p>
+      <button type="button" class="btn btn-outline-primary btn-sm mb-2" aria-controls="services"
+              (click)="onServicesCollapseButtonClick()" [attr.aria-expanded]="!isServicesCollapsed">
+        {{(isServicesCollapsed ? "COMPANY.SHOW_SERVICES" : "COMPANY.HIDE_SERVICES") | translate}}
+      </button>
+      <alert *ngIf="loadServicesError" type="danger">
+        {{"COMMON.SERVER_ERROR" | translate}}
+      </alert>
+      <ul id="services" class="pl-4" [collapse]="isServicesCollapsed">
+        <li *ngFor="let service of company.services" class="text-uppercase-first-letter">{{service.name}}</li>
+      </ul>
     </div>
     <div class="col-xs-12 col-sm-6 col-md-5 col-lg-4 order-1">
       <img *ngIf="company.image !== null" src="{{imagePrefix + company.image}}" class="img-thumbnail mb-3">

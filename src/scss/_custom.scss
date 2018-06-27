@@ -42,3 +42,7 @@
 .flex-child-with-text-truncate-child {
   min-width: 0;
 }
+
+.text-uppercase-first-letter:first-letter {
+  text-transform: uppercase;
+}
