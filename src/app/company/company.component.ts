@@ -3,6 +3,7 @@ import {BsModalRef} from 'ngx-bootstrap';
 import {faTimes, faClock, faPhone, faMapMarkerAlt, faGlobe, faUserCircle} from '@fortawesome/free-solid-svg-icons';
 
 import {Company} from './company';
+import {globals} from '../globals';
 
 @Component({
   selector: 'app-company',
@@ -17,6 +18,7 @@ export class CompanyComponent implements OnInit {
   public faGlobe = faGlobe;
   public faUserCircle = faUserCircle;
   public company: Company = null;
+  public imagePrefix = globals.imagePrefix;
 
   constructor(public bsModalRef: BsModalRef) {
   }
