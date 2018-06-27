@@ -153,7 +153,8 @@ export class MainComponent implements OnInit {
   }
 
   public getSafeStyleBackgroundImage(image: string): SafeStyle {
-    return this.domSanitizer.bypassSecurityTrustStyle(`url('${globals.imagePrefix}${image}')`);
+    const imageUrl = image === null ? 'assets/img/no-image.svg' : `${globals.imagePrefix}${image}`;
+    return this.domSanitizer.bypassSecurityTrustStyle(`url('${imageUrl}')`);
   }
 
   get searchReady(): boolean {
