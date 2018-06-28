@@ -10,9 +10,7 @@
   <!-- Page content -->
   <div ng-sidebar-content id="pageContent">
     <app-header [toggleSidebarCallback]="theBoundToggleSidebar"></app-header>
-    <div class="page-container">
-      <router-outlet></router-outlet>
-    </div>
+    <router-outlet></router-outlet>
     <app-footer></app-footer>
   </div>
 </ng-sidebar-container>

@@ -27,5 +27,22 @@
       "SALON": "Salon",
       "MASTER": "Master"
     }
+  },
+  "ABOUT": {
+    "PROJECT_NAME": "All beauty salons",
+    "PROJECT_DESCRIPTION": "is an advisory service that will help you choose the beauty salon that is right for you.",
+    "PROJECT_DESCRIPTION_APPENDIX": "Also spa, solarium, massage studio, specialist...",
+    "IN_SERVICE_REGISTERED": "In the service it is registered",
+    "COUNT_SALONS": "520+ organizations",
+    "COUNT_MASTERS": "470+ specialists",
+    "OUR_GOAL": "Our goal",
+    "FOR_USER": {
+      "TITLE": "For user",
+      "DESCRIPTION": "help to choose the best organization"
+    },
+    "FOR_COMPANY": {
+      "TITLE": "For organization",
+      "DESCRIPTION": "attract customers from the Internet"
+    }
   }
 }

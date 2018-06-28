@@ -1,98 +1,100 @@
-<h1 class="font-weight-light mb-4">{{"MAIN.CHOOSE_SALON" | translate}}</h1>
+<div class="page-container">
+  <h1 class="font-weight-light mb-4">{{"MAIN.CHOOSE_SALON" | translate}}</h1>
 
-<div *ngIf="loadErrorMessage" class="text-center mt-5 text-black-50">
-  <fa-icon [icon]="faFrown" class="fa-7x"></fa-icon>
-  <p>
-    {{"COMMON.SERVER_ERROR" | translate}}
-    <br>
-    {{"COMMON.SERVER_ERROR_DESCRIPTION" | translate}}
-  </p>
-</div>
-
-<form *ngIf="!loadErrorMessage" class="mb-4" (ngSubmit)="onSubmit()" #searchForm="ngForm" autocomplete="off">
-  <div class="row">
-    <div class="col-sm-3 col-md-2 mb-3">
-      <label>{{"MAIN.I_AM_LOOKING_FOR" | translate}}</label>
-      <div class="custom-control custom-radio" *ngFor="let key of companyTypeKeys">
-        <input class="custom-control-input" type="radio" name="companyType" [id]="key" [value]="companyTypes[key]"
-               [(ngModel)]="chosenCompanyType">
-        <label class="custom-control-label" [for]="key">
-          {{"MAIN.COMPANY_TYPES." + companyTypes[key] | translate}}
-        </label>
-      </div>
-      <div class="custom-control custom-radio">
-        <input class="custom-control-input" type="radio" name="companyType" id="noMatter" [value]="null"
-               [(ngModel)]="chosenCompanyType">
-        <label class="custom-control-label" for="noMatter">{{"MAIN.COMPANY_TYPES.NO_MATTER" | translate}}</label>
-      </div>
-    </div>
-
-    <div class="col-sm-9 col-md-10 mb-3">
-      <label>{{"COMMON.SERVICES" | translate}}</label>
-      <div class="custom-control custom-checkbox d-inline-block float-right">
-        <input type="checkbox" class="custom-control-input" id="advancedSearch" [checked]="advancedSearch"
-               (change)="toggleAdvancedSearch()">
-        <label class="custom-control-label" for="advancedSearch">{{"COMMON.ADVANCED_SEARCH" | translate}}</label>
-      </div>
-      <ul class="list-unstyled list-multi-column" *ngIf="!advancedSearch">
-        <li class="custom-control custom-checkbox" *ngFor="let category of categories">
-          <input class="custom-control-input" type="checkbox" name="categories" id="category{{category.id}}"
-                 value="{{category.id}}"
-                 (change)="onCategoryCheck(category.id)" [checked]="categoryChosen(category.id)">
-          <label class="custom-control-label" for="category{{category.id}}">{{category.name}}</label>
-        </li>
-      </ul>
-      <ul class="list-unstyled list-multi-column" *ngIf="advancedSearch">
-        <li *ngFor="let category of categories;">
-          <fieldset>
-            <legend>{{category.name}}</legend>
-            <div class="custom-control custom-checkbox" *ngFor="let service of category.services">
-              <input class="custom-control-input" type="checkbox" name="services" id="service{{service.id}}"
-                     (change)="onServiceCheck(service.id)" [checked]="serviceChosen(service.id)">
-              <label class="custom-control-label" for="service{{service.id}}">{{service.name}}</label>
-            </div>
-          </fieldset>
-        </li>
-      </ul>
-    </div>
+  <div *ngIf="loadErrorMessage" class="text-center mt-5 text-black-50">
+    <fa-icon [icon]="faFrown" class="fa-7x"></fa-icon>
+    <p>
+      {{"COMMON.SERVER_ERROR" | translate}}
+      <br>
+      {{"COMMON.SERVER_ERROR_DESCRIPTION" | translate}}
+    </p>
   </div>
-  <div class="text-center">
-    <button type="submit" class="btn btn-primary" [disabled]="!searchReady">{{"MAIN.FIND" | translate}}</button>
-  </div>
-</form>
 
-<section *ngIf="!loadErrorMessage && formSubmitted && companies.length === 0" class="text-center mt-5 text-black-50">
-  <fa-icon [icon]="faSearch" class="fa-7x"></fa-icon>
-  <p>
-    {{"MAIN.NOTHING_FOUND" | translate}}
-    <br>
-    {{"MAIN.NOTHING_FOUND_DESCRIPTION" | translate}}
-  </p>
-</section>
-
-<section *ngIf="!loadErrorMessage"
-         infiniteScroll
-         [infiniteScrollDistance]="1"
-         [infiniteScrollContainer]="'.ng-sidebar__content'"
-         [fromRoot]="true"
-         (scrolled)="onScroll()">
-  <div class="col-md-8 col-lg-7" *ngFor="let company of companies;">
-    <div class="card shadow-sm company-card border-0 mb-3 cursor-pointer" (click)="openModalCompany(company)">
-      <div class="row h-100">
-        <div class="col-4 pr-0">
-          <div class="company-card-image rounded-left"
-               [style.background-image]="getSafeStyleBackgroundImage(company.image)"></div>
+  <form *ngIf="!loadErrorMessage" class="mb-4" (ngSubmit)="onSubmit()" #searchForm="ngForm" autocomplete="off">
+    <div class="row">
+      <div class="col-sm-3 col-md-2 mb-3">
+        <label>{{"MAIN.I_AM_LOOKING_FOR" | translate}}</label>
+        <div class="custom-control custom-radio" *ngFor="let key of companyTypeKeys">
+          <input class="custom-control-input" type="radio" name="companyType" [id]="key" [value]="companyTypes[key]"
+                 [(ngModel)]="chosenCompanyType">
+          <label class="custom-control-label" [for]="key">
+            {{"MAIN.COMPANY_TYPES." + companyTypes[key] | translate}}
+          </label>
         </div>
-        <div class="col-8 pl-0">
-          <div class="card-block py-2 px-3">
-            <h4 class="card-title text-truncate mb-0 mb-sm-2">{{company.name}}</h4>
-            <p class="card-text text-justify text-truncate mb-0 mb-sm-1">{{company.address}}</p>
-            <rating *ngIf="company.rating !== null" [(ngModel)]="company.rating" [max]="5" [readonly]="true"
-                    class="pointer-events-none"></rating>
-            <p *ngIf="company.rating === null" class="text-muted mb-0 mt-2">{{"COMPANY.NOT_RATED" | translate}}</p>
+        <div class="custom-control custom-radio">
+          <input class="custom-control-input" type="radio" name="companyType" id="noMatter" [value]="null"
+                 [(ngModel)]="chosenCompanyType">
+          <label class="custom-control-label" for="noMatter">{{"MAIN.COMPANY_TYPES.NO_MATTER" | translate}}</label>
+        </div>
+      </div>
+
+      <div class="col-sm-9 col-md-10 mb-3">
+        <label>{{"COMMON.SERVICES" | translate}}</label>
+        <div class="custom-control custom-checkbox d-inline-block float-right">
+          <input type="checkbox" class="custom-control-input" id="advancedSearch" [checked]="advancedSearch"
+                 (change)="toggleAdvancedSearch()">
+          <label class="custom-control-label" for="advancedSearch">{{"COMMON.ADVANCED_SEARCH" | translate}}</label>
+        </div>
+        <ul class="list-unstyled list-multi-column" *ngIf="!advancedSearch">
+          <li class="custom-control custom-checkbox" *ngFor="let category of categories">
+            <input class="custom-control-input" type="checkbox" name="categories" id="category{{category.id}}"
+                   value="{{category.id}}"
+                   (change)="onCategoryCheck(category.id)" [checked]="categoryChosen(category.id)">
+            <label class="custom-control-label" for="category{{category.id}}">{{category.name}}</label>
+          </li>
+        </ul>
+        <ul class="list-unstyled list-multi-column" *ngIf="advancedSearch">
+          <li *ngFor="let category of categories;">
+            <fieldset>
+              <legend>{{category.name}}</legend>
+              <div class="custom-control custom-checkbox" *ngFor="let service of category.services">
+                <input class="custom-control-input" type="checkbox" name="services" id="service{{service.id}}"
+                       (change)="onServiceCheck(service.id)" [checked]="serviceChosen(service.id)">
+                <label class="custom-control-label" for="service{{service.id}}">{{service.name}}</label>
+              </div>
+            </fieldset>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center">
+      <button type="submit" class="btn btn-primary" [disabled]="!searchReady">{{"MAIN.FIND" | translate}}</button>
+    </div>
+  </form>
+
+  <section *ngIf="!loadErrorMessage && formSubmitted && companies.length === 0" class="text-center mt-5 text-black-50">
+    <fa-icon [icon]="faSearch" class="fa-7x"></fa-icon>
+    <p>
+      {{"MAIN.NOTHING_FOUND" | translate}}
+      <br>
+      {{"MAIN.NOTHING_FOUND_DESCRIPTION" | translate}}
+    </p>
+  </section>
+
+  <section *ngIf="!loadErrorMessage"
+           infiniteScroll
+           [infiniteScrollDistance]="1"
+           [infiniteScrollContainer]="'.ng-sidebar__content'"
+           [fromRoot]="true"
+           (scrolled)="onScroll()">
+    <div class="col-md-8 col-lg-7" *ngFor="let company of companies;">
+      <div class="card shadow-sm company-card border-0 mb-3 cursor-pointer" (click)="openModalCompany(company)">
+        <div class="row h-100">
+          <div class="col-4 pr-0">
+            <div class="company-card-image rounded-left"
+                 [style.background-image]="getSafeStyleBackgroundImage(company.image)"></div>
+          </div>
+          <div class="col-8 pl-0">
+            <div class="card-block py-2 px-3">
+              <h4 class="card-title text-truncate mb-0 mb-sm-2">{{company.name}}</h4>
+              <p class="card-text text-justify text-truncate mb-0 mb-sm-1">{{company.address}}</p>
+              <rating *ngIf="company.rating !== null" [(ngModel)]="company.rating" [max]="5" [readonly]="true"
+                      class="pointer-events-none"></rating>
+              <p *ngIf="company.rating === null" class="text-muted mb-0 mt-2">{{"COMPANY.NOT_RATED" | translate}}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+</div>

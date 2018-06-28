@@ -1,3 +1,43 @@
-<p>
-  about works!
-</p>
+<section id="aboutTopSection" class="text-light text-center mb-0">
+  <div id="aboutTopSectionOverlay"></div>
+  <div class="container">
+    <h1 class="display-3 d-none d-sm-block">{{"ABOUT.PROJECT_NAME" | translate}}</h1>
+    <h1 class="display-4 d-block d-sm-none">{{"ABOUT.PROJECT_NAME" | translate}}</h1>
+    <p class="lead">{{"ABOUT.PROJECT_DESCRIPTION" | translate}}</p>
+    <p class="lead">{{"ABOUT.PROJECT_DESCRIPTION_APPENDIX" | translate}}</p>
+  </div>
+</section>
+
+<section class="about-section text-center bg-transparent mb-0">
+  <h2>{{"ABOUT.IN_SERVICE_REGISTERED" | translate}}</h2>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 mb-5 mb-md-0">
+        <fa-icon [icon]="faBuilding" class="fa-5x text-primary"></fa-icon>
+        <p class="lead">{{"ABOUT.COUNT_SALONS" | translate}}</p>
+      </div>
+      <div class="col-md-6">
+        <fa-icon [icon]="faUsers" class="fa-5x text-primary"></fa-icon>
+        <p class="lead">{{"ABOUT.COUNT_MASTERS" | translate}}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about-section text-center bg-violet-darken-10 text-light mb-0">
+  <h2>{{"ABOUT.OUR_GOAL" | translate}}</h2>
+  <div class="container">
+    <div class="row text-center">
+      <div class="col-md-6 mb-5 mb-md-0">
+        <fa-icon [icon]="faUserFriends" class="fa-5x"></fa-icon>
+        <p class="mb-0 lead">{{"ABOUT.FOR_USER.TITLE" | translate}}</p>
+        <p>{{"ABOUT.FOR_USER.DESCRIPTION" | translate}}</p>
+      </div>
+      <div class="col-md-6">
+        <fa-icon [icon]="faUserTie" class="fa-5x"></fa-icon>
+        <p class="mb-0 lead">{{"ABOUT.FOR_COMPANY.TITLE" | translate}}</p>
+        <p>{{"ABOUT.FOR_COMPANY.TITLE" | translate}}</p>
+      </div>
+    </div>
+  </div>
+</section>
