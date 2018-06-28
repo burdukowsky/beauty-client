@@ -20,7 +20,7 @@
       <alert *ngIf="loadServicesError" type="danger">
         {{"COMMON.SERVER_ERROR" | translate}}
       </alert>
-      <ul id="services" class="pl-4" [collapse]="isServicesCollapsed">
+      <ul id="services" class="pl-0" [collapse]="isServicesCollapsed">
         <li *ngFor="let service of company.services" class="text-uppercase-first-letter">{{service.name}}</li>
       </ul>
     </div>
