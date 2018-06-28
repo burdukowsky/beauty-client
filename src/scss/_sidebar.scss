@@ -14,10 +14,10 @@ ng-sidebar-container {
 
 .sidebar-list-group-item-active {
   @extend .font-weight-bold;
-  @extend .text-violet-darken-20;
+  @extend .text-primary-darken-20;
   background-color: $sidebar-list-group-item-active-bg-color;
   &:hover, &:focus {
-    @extend .text-violet-darken-20;
+    @extend .text-primary-darken-20;
     background-color: $sidebar-list-group-item-active-bg-color;
   }
 }

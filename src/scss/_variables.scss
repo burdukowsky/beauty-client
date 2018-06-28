@@ -1,12 +1,22 @@
 $violet: #6435C9;
-$violet-darken-10: darken($violet, 10%);
-$violet-darken-20: darken($violet, 20%);
-$violet-lighten-10: lighten($violet, 10%);
-$violet-lighten-20: lighten($violet, 20%);
-$violet-lighten-30: lighten($violet, 30%);
-$violet-lighten-40: lighten($violet, 40%);
+$red: #ef5350;
+$blue: #42a5f5;
+$green: #66bb6a;
+$light-green: #9ccc65;
+$deep-orange: #ff7043;
+$brown: #8d6e63;
+$blue-grey: #78909c;
 
-$body-bg: lighten($violet, 48%);
+$primary: $violet;
+
+$primary-darken-10: darken($primary, 10%);
+$primary-darken-20: darken($primary, 20%);
+$primary-lighten-10: lighten($primary, 10%);
+$primary-lighten-20: lighten($primary, 20%);
+$primary-lighten-30: lighten($primary, 30%);
+$primary-lighten-40: lighten($primary, 40%);
+
+$body-bg: lighten($primary, 48%);
 
 $sidebar-list-group-item-active-bg-color: #d6d8db;
 
