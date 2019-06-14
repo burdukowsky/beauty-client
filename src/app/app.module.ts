@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {AppRoutingModule} from './app-routing.module';
@@ -22,9 +22,14 @@ import {HeaderComponent} from './layout/header/header.component';
 import {FooterComponent} from './layout/footer/footer.component';
 import {AboutComponent} from './about/about.component';
 import {CompanyComponent} from './company/company.component';
+import {AppConfig} from './app-config.service';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
+export function AppConfigFactory(appConfig: AppConfig) {
+  return () => appConfig.init();
 }
 
 @NgModule({
@@ -59,7 +64,14 @@ export function createTranslateLoader(http: HttpClient) {
       }
     })
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: AppConfigFactory,
+      deps: [AppConfig],
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [CompanyComponent]
 })

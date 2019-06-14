@@ -3,18 +3,18 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 
-import {environment} from '../../environments/environment';
 import {Company} from './company';
 import {Category} from './category';
 import {CompaniesSearchParams} from './companies-search-params';
 import {Service} from './service';
+import {AppConfig} from '../app-config.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CompanyService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private appConfig: AppConfig) {
   }
 
   public getCompaniesByCategoryIds(searchParams: CompaniesSearchParams): Observable<Array<Company>> {
@@ -26,7 +26,7 @@ export class CompanyService {
       .append('type', searchParams.companyType == null ? '' : searchParams.companyType)
       .append('ids', searchParams.ids == null ? '' : searchParams.ids.join());
 
-    return this.http.get<any>(`${environment.apiEndpoint}/public/companies-by-category-ids`, {params: params})
+    return this.http.get<any>(`${this.appConfig.api}/public/companies-by-category-ids`, {params: params})
       .pipe(map(response => response.data));
   }
 
@@ -39,7 +39,7 @@ export class CompanyService {
       .append('type', searchParams.companyType == null ? '' : searchParams.companyType)
       .append('ids', searchParams.ids == null ? '' : searchParams.ids.join());
 
-    return this.http.get<any>(`${environment.apiEndpoint}/public/companies-by-service-ids`, {params: params})
+    return this.http.get<any>(`${this.appConfig.api}/public/companies-by-service-ids`, {params: params})
       .pipe(map(response => response.data));
   }
 
@@ -48,16 +48,16 @@ export class CompanyService {
       .append('limit', '1000')
       .append('sort', 'name');
 
-    return this.http.get<any>(`${environment.apiEndpoint}/categories`, {params: params})
+    return this.http.get<any>(`${this.appConfig.api}/categories`, {params: params})
       .pipe(map(response => response._embedded.categories));
   }
 
   public getCategoriesWithServices(): Observable<Array<Category>> {
-    return this.http.get<Array<Category>>(`${environment.apiEndpoint}/categories-with-services`);
+    return this.http.get<Array<Category>>(`${this.appConfig.api}/categories-with-services`);
   }
 
   public getServicesByCompanyId(companyId: number): Observable<Array<Service>> {
-    return this.http.get<any>(`${environment.apiEndpoint}/companies/${companyId}/services`)
+    return this.http.get<any>(`${this.appConfig.api}/companies/${companyId}/services`)
       .pipe(map(response => response._embedded.services));
   }
 }
